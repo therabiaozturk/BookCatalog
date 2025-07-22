@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using BookCatalogDataAccess;
 using BookCatalogModel.Entities;
-using BookCatalogDataAccess;
-using Microsoft.EntityFrameworkCore;
+using BookCatalogModel.Interfaces;
 
-namespace BookCatalogBusiness.Services
+namespace BookCatalogModel.Interfaces
 {
-    public class BookService : IBookService
-    {
+    public class BookService : IBookService    {
         private readonly AppDbContext _context;
 
         public BookService(AppDbContext context)
@@ -25,27 +19,27 @@ namespace BookCatalogBusiness.Services
 
         public Book? GetById(Guid id)
         {
-            return _context.Books.FirstOrDefault(b => b.Id == id);
+            return _context.Books.Find(id);
         }
 
-        public void Create(Book book)
+        public void Add(Book book)
         {
             _context.Books.Add(book);
             _context.SaveChanges();
         }
 
-        public void Update(Guid id, Book updatedBook)
+        public void Update(Book book)
         {
-            var book = _context.Books.Find(id);
-            if (book == null) return;
+            var existingBook = _context.Books.Find(book.Id);
+            if (existingBook == null) return;
 
-            book.Title = updatedBook.Title;
-            book.AuthorId = updatedBook.AuthorId;
-            book.CategoryId = updatedBook.CategoryId;
-            book.Publisher = updatedBook.Publisher;
-            book.Isbn = updatedBook.Isbn;
-            book.Description = updatedBook.Description;
-            book.Status = updatedBook.Status;
+            existingBook.Title = book.Title;
+            existingBook.AuthorId = book.AuthorId;
+            existingBook.CategoryId = book.CategoryId;
+            existingBook.Publisher = book.Publisher;
+            existingBook.ISBN = book.ISBN;
+            existingBook.Description = book.Description;
+            existingBook.CreatedAt = book.CreatedAt;
 
             _context.SaveChanges();
         }
