@@ -19,7 +19,7 @@ namespace BookCatalogModel.Entities
 
         public string? Publisher { get; set; }
 
-        public string? Isbn { get; set; } // Eksik olan özellik
+        public string ISBN { get; set; } = "";
 
         public string? Description { get; set; }
 

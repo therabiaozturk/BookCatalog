@@ -1,16 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using BookCatalogModel.Entities;
 using BookCatalogDataAccess;
-using BookCatalogModel.Entities;
 using BookCatalogModel.Interfaces;
 
-namespace BookCatalogModel.Interfaces
+namespace BookCatalogBusiness.Services
 {
-    public class BookService : IBookService    {
+
+    public class BookService : IBookService
+    {
         private readonly AppDbContext _context;
 
         public BookService(AppDbContext context)
@@ -28,24 +27,24 @@ namespace BookCatalogModel.Interfaces
             return _context.Books.Find(id);
         }
 
-        public void Add(Book book)
+        public void Create(Book book)
         {
             _context.Books.Add(book);
             _context.SaveChanges();
         }
 
-        public void Update(Book book)
+        public void Update(Guid id, Book updatedBook)
         {
-            var existingBook = _context.Books.Find(book.Id);
+            var existingBook = _context.Books.Find(id);
             if (existingBook == null) return;
 
-            existingBook.Title = book.Title;
-            existingBook.AuthorId = book.AuthorId;
-            existingBook.CategoryId = book.CategoryId;
-            existingBook.Publisher = book.Publisher;
-            existingBook.ISBN = book.ISBN;
-            existingBook.Description = book.Description;
-            existingBook.CreatedAt = book.CreatedAt;
+            existingBook.Title = updatedBook.Title;
+            existingBook.AuthorId = updatedBook.AuthorId;
+            existingBook.CategoryId = updatedBook.CategoryId;
+            existingBook.Publisher = updatedBook.Publisher;
+            existingBook.ISBN = updatedBook.ISBN;
+            existingBook.Description = updatedBook.Description;
+            existingBook.CreatedAt = updatedBook.CreatedAt;
 
             _context.SaveChanges();
         }

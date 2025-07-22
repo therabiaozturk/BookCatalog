@@ -5,8 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using BookCatalogModel.Entities;
 
-namespace BookCatalogBusiness.Services
-{
+namespace BookCatalogModel.Interfaces { 
     public interface ICategoryService
     {
         List<Category> GetAll();

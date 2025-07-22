@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using BookCatalogModel.Entities;
 using BookCatalogDataAccess;
+using BookCatalogModel.Interfaces;
 
 namespace BookCatalogBusiness.Services
 {

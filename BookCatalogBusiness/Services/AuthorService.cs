@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using BookCatalogDataAccess;
 using BookCatalogModel.Entities;
-
+using BookCatalogModel.Interfaces;
 namespace BookCatalogBusiness.Services
 {
     public class AuthorService : IAuthorService

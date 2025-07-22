@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using BookCatalogModel.Entities;
 using BookCatalogBusiness.Services;
+using BookCatalogModel.Interfaces;
 
 namespace BookCatalogApi.Controllers
 {
