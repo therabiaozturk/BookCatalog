@@ -1,4 +1,10 @@
-﻿using BookCatalogDataAccess;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using BookCatalogModel.Entities;
+using BookCatalogDataAccess;
 using BookCatalogModel.Entities;
 using BookCatalogModel.Interfaces;
 

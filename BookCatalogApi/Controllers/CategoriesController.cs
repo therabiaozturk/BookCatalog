@@ -15,6 +15,7 @@ namespace BookCatalogApi.Controllers
             _categoryService = categoryService;
         }
 
+        // GET: api/Categories
         [HttpGet]
         public IActionResult GetCategories()
         {
@@ -22,6 +23,7 @@ namespace BookCatalogApi.Controllers
             return Ok(categories);
         }
 
+        // GET: api/Categories/{id}
         [HttpGet("{id}")]
         public IActionResult GetCategory(Guid id)
         {
@@ -32,6 +34,7 @@ namespace BookCatalogApi.Controllers
             return Ok(category);
         }
 
+        // POST: api/Categories
         [HttpPost]
         public IActionResult CreateCategory(Category category)
         {
@@ -39,6 +42,7 @@ namespace BookCatalogApi.Controllers
             return CreatedAtAction(nameof(GetCategory), new { id = category.Id }, category);
         }
 
+        // PUT: api/Categories/{id}
         [HttpPut("{id}")]
         public IActionResult UpdateCategory(Guid id, Category updatedCategory)
         {
@@ -51,6 +55,7 @@ namespace BookCatalogApi.Controllers
             return NoContent();
         }
 
+        // DELETE: api/Categories/{id}
         [HttpDelete("{id}")]
         public IActionResult DeleteCategory(Guid id)
         {
@@ -63,3 +68,4 @@ namespace BookCatalogApi.Controllers
         }
     }
 }
+
