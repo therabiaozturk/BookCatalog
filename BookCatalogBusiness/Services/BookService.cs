@@ -1,5 +1,4 @@
 ﻿using BookCatalog.Model.Entities;
-using BookCatalog.DataAccess.Repositories;
 using BookCatalog.Model.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -7,53 +6,42 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BookCatalog.DataAccess.Repositories
+namespace BookCatalog.Business.Services
 {
     public class BookService : IBookService
-    {
-        private readonly AppDbContext _context;
+    {    //vs önerdi implement ettirdi
+        private readonly IBookRepository _bookRepository;
 
-        public BookService(AppDbContext context) => _context = context;
+        public BookService(IBookRepository bookRepository) => _bookRepository = bookRepository;
 
         public List<Book> GetAll()
         {
-            return _context.Books.ToList();
+            return _bookRepository.GetAll();
         }
 
         public Book? GetById(Guid id)
         {
-            return _context.Books.Find(id);
+            return _bookRepository.GetById(id);
         }
-        //id döceks 
+
         public void Create(Book book)
         {
-            _context.Books.Add(book);
-            _context.SaveChanges();
+            _bookRepository.Create(book);
         }
 
-        public void Update(Guid id, Book updatedBook)
+        public void Update(Book book)
         {
-            var existingBook = _context.Books.Find(id);
-            if (existingBook == null) return;
-
-            existingBook.Title = updatedBook.Title;
-            existingBook.AuthorId = updatedBook.AuthorId;
-            existingBook.CategoryId = updatedBook.CategoryId;
-            existingBook.Publisher = updatedBook.Publisher;
-            existingBook.Isbn = updatedBook.Isbn;
-            existingBook.Description = updatedBook.Description;
-            existingBook.CreatedAt = updatedBook.CreatedAt;
-
-            _context.SaveChanges();
+            _bookRepository.Update(book.Id, book);
         }
 
         public void Delete(Guid id)
         {
-            var book = _context.Books.Find(id);
-            if (book == null) return;
+            _bookRepository.Delete(id);
+        }
 
-            _context.Books.Remove(book);
-            _context.SaveChanges();
+        public void Update(Guid id, Book updatedBook)
+        {
+            throw new NotImplementedException();
         }
     }
 }

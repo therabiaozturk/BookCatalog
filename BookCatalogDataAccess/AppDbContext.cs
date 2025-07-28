@@ -2,7 +2,7 @@
 using BookCatalog.Model.Entities;
 
 
-namespace BookCatalog.DataAccess.Repositories;
+namespace BookCatalog.DataAccess;
 
 public class AppDbContext : DbContext
 {

@@ -15,44 +15,37 @@ namespace BookCatalog.DataAccess.Repositories
             _context = context;
         }
 
+        public List<Author> GetAll() => _context.Authors.ToList();
+
+        public Author? GetById(Guid id) => _context.Authors.Find(id);
+
         public void Create(Author author)
         {
             _context.Authors.Add(author);
             _context.SaveChanges();
         }
 
+        public void Update(Guid id, Author author)
+        {
+            var existing = _context.Authors.Find(id);
+            if (existing == null) return;
+
+            existing.FirstName = author.FirstName;
+            existing.LastName = author.LastName;
+            existing.BirthDate = author.BirthDate;
+            existing.Biography = author.Biography;
+            existing.CreatedAt = author.CreatedAt;
+
+            _context.SaveChanges();
+        }
+
         public void Delete(Guid id)
         {
             var author = _context.Authors.Find(id);
-            if (author != null)
-            {
-                _context.Authors.Remove(author);
-                _context.SaveChanges();
-            }
-        }
+            if (author == null) return;
 
-        public List<Author> GetAll()
-        {
-            return _context.Authors.ToList();
-        }
-
-        public Author? GetById(Guid id)
-        {
-            return _context.Authors.FirstOrDefault(a => a.Id == id);
-        }
-
-        public void Update(Guid id, Author updatedAuthor)
-        {
-            var author = _context.Authors.Find(id);
-            if (author != null)
-            {
-                author.FirstName = updatedAuthor.FirstName;
-                author.LastName = updatedAuthor.LastName;
-                author.BirthDate = updatedAuthor.BirthDate;
-                author.Biography = updatedAuthor.Biography;
-                author.CreatedAt = updatedAuthor.CreatedAt;
-                _context.SaveChanges();
-            }
+            _context.Authors.Remove(author);
+            _context.SaveChanges();
         }
     }
 }

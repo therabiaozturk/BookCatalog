@@ -1,4 +1,4 @@
-﻿using BookCatalog.DataAccess.Repositories;
+﻿using BookCatalog.DataAccess;
 using BookCatalog.Model.Entities;
 using BookCatalog.Model.Interfaces;
 
@@ -6,43 +6,21 @@ namespace BookCatalog.Business.Services
 {
     public class AuthorService : IAuthorService
     {
-        private readonly AppDbContext _context;
+        private readonly IAuthorRepository _authorRepository;
 
-        public AuthorService(AppDbContext context)
+        public AuthorService(IAuthorRepository authorRepository)
         {
-            _context = context;
+            _authorRepository = authorRepository;
         }
 
-        public List<Author> GetAll()
-        {
-            return _context.Authors.ToList();
-        }
+        public List<Author> GetAll() => _authorRepository.GetAll();
 
-        public Author? GetById(Guid id)
-        {
-            return _context.Authors.Find(id);
-        }
+        public Author? GetById(Guid id) => _authorRepository.GetById(id);
 
-        public void Create(Author author)
-        {
-            _context.Authors.Add(author);
-            _context.SaveChanges();
-        }
+        public void Create(Author author) => _authorRepository.Create(author);
 
-        public void Update(Author author)
-        {
-            _context.Authors.Update(author);
-            _context.SaveChanges();
-        }
+        public void Update(Author author) => _authorRepository.Update(author.Id, author);
 
-        public void Delete(Guid id)
-        {
-            var author = _context.Authors.Find(id);
-            if (author != null)
-            {
-                _context.Authors.Remove(author);
-                _context.SaveChanges();
-            }
-        }
+        public void Delete(Guid id) => _authorRepository.Delete(id);
     }
 }

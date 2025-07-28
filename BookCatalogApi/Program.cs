@@ -2,6 +2,7 @@ using BookCatalog.Business.Services;
 using Microsoft.EntityFrameworkCore;
 using BookCatalog.Model.Interfaces;
 using BookCatalog.DataAccess.Repositories;
+using BookCatalog.DataAccess;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -20,6 +21,10 @@ builder.Services.AddScoped<IBookService, BookService>();
 builder.Services.AddScoped<IAuthorService, AuthorService>();
 
 builder.Services.AddScoped<ICategoryService, CategoryService>();
+
+builder.Services.AddScoped<IBookRepository, BookRepository>();
+
+builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 
 
 // Swagger vs.

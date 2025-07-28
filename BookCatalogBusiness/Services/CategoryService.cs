@@ -5,51 +5,47 @@ using System.Text;
 using System.Threading.Tasks;
 using BookCatalog.Model.Entities;
 using BookCatalog.Model.Interfaces;
-using BookCatalog.DataAccess.Repositories;
+using BookCatalog.DataAccess;
 
 namespace BookCatalog.Business.Services
 {
     public class CategoryService : ICategoryService
     {
-        private readonly AppDbContext _context;
+        private readonly ICategoryRepository _categoryRepository;
 
-        public CategoryService(AppDbContext context)
+        public CategoryService(ICategoryRepository categoryRepository)
         {
-            _context = context;
+            _categoryRepository = categoryRepository;
         }
 
         public List<Category> GetAll()
         {
-            return _context.Categories.ToList();
+            return _categoryRepository.GetAll();
         }
 
         public Category? GetById(Guid id)
         {
-            return _context.Categories.Find(id);
+            return _categoryRepository.GetById(id);
         }
 
         public void Create(Category category)
         {
-            _context.Categories.Add(category);
-            _context.SaveChanges();
+            _categoryRepository.Create(category);
         }
 
-        public void Update(Category category)
+        public void Update(Guid id, Category category)
         {
-            var existing = _context.Categories.Find(category.Id);
-            if (existing == null) return;
-
-            existing.Name = category.Name;
-            _context.SaveChanges();
+            _categoryRepository.Update(id, category);
         }
 
         public void Delete(Guid id)
         {
-            var category = _context.Categories.Find(id);
-            if (category == null) return;
+            _categoryRepository.Delete(id);
+        }
 
-            _context.Categories.Remove(category);
-            _context.SaveChanges();
+        public void Update(Category category)
+        {
+            throw new NotImplementedException();
         }
     }
 }

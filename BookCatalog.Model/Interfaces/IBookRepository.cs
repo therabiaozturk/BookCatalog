@@ -12,5 +12,7 @@ namespace BookCatalog.Model.Interfaces
         List<Book> GetAll();
         Book? GetById(Guid id);
         void Create(Book book);
+        void Update(Guid id, Book updatedBook);
+        void Delete(Guid id);
     }
 }
