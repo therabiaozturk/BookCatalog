@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using BookCatalog.Model.Interfaces;
 using BookCatalog.Model.Entities;
 
 namespace BookCatalog.Model.Interfaces
@@ -13,7 +12,7 @@ namespace BookCatalog.Model.Interfaces
         List<Author> GetAll();
         Author? GetById(Guid id);
         void Create(Author author);
-        void Update(Guid id, Author updatedAuthor);
+        void Update(Author author);
         void Delete(Guid id);
     }
 }

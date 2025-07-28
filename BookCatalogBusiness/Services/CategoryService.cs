@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using BookCatalogModel.Entities;
-using BookCatalogDataAccess;
-using BookCatalogModel.Interfaces;
+using BookCatalog.Model.Entities;
+using BookCatalog.Model.Interfaces;
+using BookCatalog.DataAccess.Repositories;
 
-namespace BookCatalogBusiness.Services
+namespace BookCatalog.Business.Services
 {
     public class CategoryService : ICategoryService
     {

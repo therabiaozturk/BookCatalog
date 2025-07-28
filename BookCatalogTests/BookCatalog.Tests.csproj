@@ -2,6 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
+	  <RootNamespace>BookCatalog.Tests</RootNamespace>
+	  <AssemblyName>BookCatalog.Tests</AssemblyName>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
 
@@ -17,11 +19,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BookCatalogBusiness\BookCatalogBusiness.csproj" />
+	  <ProjectReference Include="..\BookCatalog.Business\BookCatalog.Business.csproj" />
+	  <ProjectReference Include="..\BookCatalog.Model\BookCatalog.Model.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <Using Include="Xunit" />
-  </ItemGroup>
+  </ItemGroup>s
 
 </Project>

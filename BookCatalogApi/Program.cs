@@ -1,6 +1,8 @@
-using BookCatalogBusiness.Services;
-using BookCatalogDataAccess;
+using BookCatalog.Business.Services;
 using Microsoft.EntityFrameworkCore;
+using BookCatalog.Model.Interfaces;
+using BookCatalog.DataAccess.Repositories;
+
 
 var builder = WebApplication.CreateBuilder(args);
 

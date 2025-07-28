@@ -3,17 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using BookCatalog.Model.Interfaces;
 using BookCatalog.Model.Entities;
 
 namespace BookCatalog.Model.Interfaces
 {
-    public interface IAuthorService
+    public interface IBookService
     {
-        List<Author> GetAll();
-        Author? GetById(Guid id);
-        void Create(Author author);
-        void Update(Guid id, Author updatedAuthor);
+        List<Book> GetAll();
+        Book? GetById(Guid id);
+        void Create(Book book);
+        void Update(Guid id, Book updatedBook);
+
         void Delete(Guid id);
     }
 }

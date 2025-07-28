@@ -1,4 +1,4 @@
-namespace BookCatalogTests
+namespace BookCatalog.Tests
 {
     public class UnitTest1
     {

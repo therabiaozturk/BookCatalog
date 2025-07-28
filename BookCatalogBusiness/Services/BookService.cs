@@ -1,21 +1,19 @@
-﻿using System;
+﻿using BookCatalog.Model.Entities;
+using BookCatalog.DataAccess.Repositories;
+using BookCatalog.Model.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using BookCatalogModel.Entities;
-using BookCatalogDataAccess;
-using BookCatalogModel.Interfaces;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace BookCatalogBusiness.Services
+namespace BookCatalog.DataAccess.Repositories
 {
-
     public class BookService : IBookService
     {
         private readonly AppDbContext _context;
 
-        public BookService(AppDbContext context)
-        {
-            _context = context;
-        }
+        public BookService(AppDbContext context) => _context = context;
 
         public List<Book> GetAll()
         {
@@ -26,7 +24,7 @@ namespace BookCatalogBusiness.Services
         {
             return _context.Books.Find(id);
         }
-
+        //id döceks 
         public void Create(Book book)
         {
             _context.Books.Add(book);
@@ -42,7 +40,7 @@ namespace BookCatalogBusiness.Services
             existingBook.AuthorId = updatedBook.AuthorId;
             existingBook.CategoryId = updatedBook.CategoryId;
             existingBook.Publisher = updatedBook.Publisher;
-            existingBook.ISBN = updatedBook.ISBN;
+            existingBook.Isbn = updatedBook.Isbn;
             existingBook.Description = updatedBook.Description;
             existingBook.CreatedAt = updatedBook.CreatedAt;
 

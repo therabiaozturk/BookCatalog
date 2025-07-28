@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using BookCatalogDataAccess;
-using BookCatalogModel.Entities;
-using BookCatalogModel.Interfaces;
-namespace BookCatalogBusiness.Services
+﻿using BookCatalog.DataAccess.Repositories;
+using BookCatalog.Model.Entities;
+using BookCatalog.Model.Interfaces;
+
+namespace BookCatalog.Business.Services
 {
     public class AuthorService : IAuthorService
     {
@@ -33,27 +29,20 @@ namespace BookCatalogBusiness.Services
             _context.SaveChanges();
         }
 
-        public void Update(Guid id, Author updatedAuthor)
+        public void Update(Author author)
         {
-            var author = _context.Authors.Find(id);
-            if (author == null) return;
-
-            author.FirstName = updatedAuthor.FirstName;
-            author.LastName = updatedAuthor.LastName;
-            author.BirthDate = updatedAuthor.BirthDate;
-            author.Biography = updatedAuthor.Biography;
-            author.CreatedAt = updatedAuthor.CreatedAt;
-
+            _context.Authors.Update(author);
             _context.SaveChanges();
         }
 
         public void Delete(Guid id)
         {
             var author = _context.Authors.Find(id);
-            if (author == null) return;
-
-            _context.Authors.Remove(author);
-            _context.SaveChanges();
+            if (author != null)
+            {
+                _context.Authors.Remove(author);
+                _context.SaveChanges();
+            }
         }
     }
 }

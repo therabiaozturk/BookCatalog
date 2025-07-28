@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using BookCatalogModel.Entities;
-using BookCatalogBusiness.Services;
-using BookCatalogModel.Interfaces;
-namespace BookCatalogApi.Controllers
+using BookCatalog.Model.Entities;
+using BookCatalog.Business.Services;
+using BookCatalog.Model.Interfaces;
+namespace BookCatalog.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
