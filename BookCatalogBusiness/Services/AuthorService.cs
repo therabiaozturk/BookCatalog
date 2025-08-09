@@ -15,7 +15,21 @@ namespace BookCatalog.Business.Services
 
         public List<Author> GetAll() => _authorRepository.GetAll();
 
-        public Author? GetById(Guid id) => _authorRepository.GetById(id);
+        public Author? GetById(Guid id)
+        {
+            return _authorRepository.GetById(id);
+        }
+        public Author? UpdateAuthorCreatedAtNow(Guid id)
+        {
+            var author = GetById(id);
+            if (author == null) return null;
+
+            author.CreatedAt = DateTime.UtcNow;
+            _authorRepository.Update(author.Id, author);
+            return author;
+
+
+        }
 
         public void Create(Author author) => _authorRepository.Create(author);
 

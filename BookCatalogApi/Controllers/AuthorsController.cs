@@ -16,7 +16,7 @@ namespace BookCatalog.Api.Controllers
             _authorService = authorService;
         }
 
-        // GET: api/Authors
+        // GET: api/authors
         [HttpGet]
         public IActionResult GetAuthors()
         {
@@ -24,45 +24,50 @@ namespace BookCatalog.Api.Controllers
             return Ok(authors);
         }
 
-        // GET: api/Authors/{id}
-        [HttpGet("{id}")]
+        // GET: api/authors/{id}
+        [HttpGet("{id:guid}")]
         public IActionResult GetAuthor(Guid id)
         {
             var author = _authorService.GetById(id);
-            if (author == null)
-                return NotFound();
-
-            return Ok(author);
+            return author is null ? NotFound() : Ok(author);
         }
 
-        // POST: api/Authors
+        // POST: api/authors
         [HttpPost]
-        public IActionResult CreateAuthor(Author author)
+        public IActionResult CreateAuthor([FromBody] Author author)
         {
+            if (!ModelState.IsValid) return ValidationProblem(ModelState);
+
             _authorService.Create(author);
             return CreatedAtAction(nameof(GetAuthor), new { id = author.Id }, author);
         }
 
-        // PUT: api/Authors/{id}
-        [HttpPut("{id}")]
-        public IActionResult UpdateAuthor(Guid id, Author updatedAuthor)
+        // PUT: api/authors/{id}
+        [HttpPut("{id:guid}")]
+        public IActionResult UpdateAuthor(Guid id, [FromBody] Author updatedAuthor)
         {
-            var existingAuthor = _authorService.GetById(id);
-            if (existingAuthor == null)
-                return NotFound();
+            var existing = _authorService.GetById(id);
+            if (existing is null) return NotFound();
 
-            updatedAuthor.Id = id;
+            updatedAuthor.Id = id;     // route id öncelikli
             _authorService.Update(updatedAuthor);
             return NoContent();
         }
 
-        // DELETE: api/Authors/{id}
-        [HttpDelete("{id}")]
+        // PATCH: api/authors/{id}/createdAt/now  (opsiyonel ekstra)
+        [HttpPatch("{id:guid}/createdAt/now")]
+        public IActionResult TouchCreatedAt(Guid id)
+        {
+            var updated = _authorService.UpdateAuthorCreatedAtNow(id);
+            return updated is null ? NotFound() : Ok(updated);
+        }
+
+        // DELETE: api/authors/{id}
+        [HttpDelete("{id:guid}")]
         public IActionResult DeleteAuthor(Guid id)
         {
-            var existingAuthor = _authorService.GetById(id);
-            if (existingAuthor == null)
-                return NotFound();
+            var existing = _authorService.GetById(id);
+            if (existing is null) return NotFound();
 
             _authorService.Delete(id);
             return NoContent();

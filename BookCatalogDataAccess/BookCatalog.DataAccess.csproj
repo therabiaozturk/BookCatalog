@@ -18,7 +18,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BookCatalog.Model\BookCatalog.Model.csproj" />
-    <ProjectReference Include="..\BookCatalogModel\BookCatalog.Model.csproj" />
   </ItemGroup>
 
 </Project>

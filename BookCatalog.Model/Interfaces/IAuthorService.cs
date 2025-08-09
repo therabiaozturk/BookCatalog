@@ -14,5 +14,6 @@ namespace BookCatalog.Model.Interfaces
         void Create(Author author);
         void Update(Author author);
         void Delete(Guid id);
+        Author? UpdateAuthorCreatedAtNow(Guid id);
     }
 }

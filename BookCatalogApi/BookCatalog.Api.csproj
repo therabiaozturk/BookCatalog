@@ -19,7 +19,7 @@
 		<ProjectReference Include="..\BookCatalog.Model\BookCatalog.Model.csproj" />
 		<ProjectReference Include="..\BookCatalogBusiness\BookCatalog.Business.csproj" />
 		<ProjectReference Include="..\BookCatalogDataAccess\BookCatalog.DataAccess.csproj" />
-		<ProjectReference Include="..\BookCatalogModel\BookCatalog.Model.csproj" />
+	
 	</ItemGroup>
 
 </Project>

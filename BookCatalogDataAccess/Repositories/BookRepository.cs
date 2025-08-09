@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using BookCatalog.Model.Entities;
 using BookCatalog.Model.Interfaces;
+using BookCatalog.DataAccess;
 
 namespace BookCatalog.DataAccess.Repositories
 {

@@ -5,6 +5,5 @@
 		<Nullable>enable</Nullable>
 		<ImplicitUsings>enable</ImplicitUsings>
 	</PropertyGroup>
-	<ProjectReference Include="..\BookCatalogModel\BookCatalog.Model.csproj" />
 
 </Project>
